@@ -22,12 +22,12 @@ class FileTaskStorage(TaskStorage):
             with open(self.filename, "r") as f:
                 for line in f:
                     parts = line.strip().split(',')
-                    if len(parts) == 5:  # 🆕 มี priority ด้วย
+                    if len(parts) == 5:  # มี priority ด้วย
                         task_id = int(parts[0])
                         description = parts[1]
                         due_date = parts[2] if parts[2] != 'None' else None
                         completed = parts[3] == 'True'
-                        priority = parts[4]  # 🆕
+                        priority = parts[4]  # 
                         loaded_tasks.append(Task(task_id, description, due_date, completed, priority))
         except FileNotFoundError:
             print(f"No existing task file '{self.filename}' found. Starting fresh.")
@@ -47,7 +47,7 @@ class Task:
         self.description = description
         self.due_date = due_date
         self.completed = completed
-        self.priority = priority  # 🆕 เพิ่ม priority
+        self.priority = priority  #  เพิ่ม priority
 
     def mark_completed(self):
         self.completed = True
@@ -99,7 +99,7 @@ class TaskManager:
         print(f"Task {task_id} not found.")
         return False
 
-
+print("Finished")
 # Logic หลัก
 if __name__ == "__main__":
     file_storage = FileTaskStorage("my_tasks.txt")
@@ -109,3 +109,5 @@ if __name__ == "__main__":
     manager.add_task("Review SOLID Principles", "2024-08-10", priority="high")
     manager.add_task("Prepare for Final Exam", "2024-08-15", priority="low")
     manager.list_tasks()
+
+
